@@ -1,20 +1,20 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: hello-goodbye
+  name: nginx-deployment
 spec:
   params:
     - name: hello-greeting
       default: Hello from a Pipeline
   tasks:
-    - name: hello
+    - name: nginx
       taskRef:
-        name: hello
+        name: nginx
       params:
         - name: greeting
           value: "$(params.hello-greeting)"
-    - name: goodbye
+    - name: alpine
       runAfter:
-        - hello
+        - nginx
       taskRef:
-        name: goodbye
+        name: alpine
