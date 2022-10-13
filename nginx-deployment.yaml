@@ -7,14 +7,14 @@ spec:
     - name: hello-greeting
       default: Hello from a Pipeline
   tasks:
-    - name: nginx
+    - name: hello
       taskRef:
-        name: nginx
+        name: hello
       params:
         - name: greeting
           value: "$(params.hello-greeting)"
-    - name: alpine
+    - name: goodbye
       runAfter:
-        - nginx
+        - hello
       taskRef:
-        name: alpine
+        name: goodbye
